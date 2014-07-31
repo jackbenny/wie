@@ -1,0 +1,6 @@
+0.1 - 2014-07-28
+    First release of wie
+
+0.2 - 2014-07-31
+    Changed 'shell_exec(curl -s $URL)' to PHP5 cURL function
+    Added HISTORY file

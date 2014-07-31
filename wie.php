@@ -22,7 +22,7 @@ $defaultLang = "en"; // default language
 $progName = $argv[0];
 function usage()
 {
-    print "Wikipedia ingress extractor (wie), version 0.1\n";
+    print "Wikipedia ingress extractor (wie), version 0.2\n";
     print "Usage: $GLOBALS[progName] [--lang=sv] article\n";
     print "Default language if none specified is $GLOBALS[defaultLang].\n";
     print "Remember to quote the article if there's more than one word,\n";
@@ -58,7 +58,14 @@ else
 $article = ucwords($article); // uppercase article
 $article = preg_replace("/\s/", "_" ,$article); // make spaces to underscore
 $url = "http://$lang.wikipedia.org/wiki/$article"; 
-$data = shell_exec("curl -s $url"); // retrive the page
+
+// get the wiki page
+$ch = curl_init("$url");
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$data = curl_exec($ch);
+curl_close($ch);
+
 preg_match("/\<p\>(.*)\<\/p\>/", $data, $match); // fetch text inside first <p>
 
 // check is we had a match

@@ -13,6 +13,9 @@ Or run it with 'php wie.php'. To display the help, type:
 
     ./wie.php --help
 
+## Requirements ##
+The script requires PHP5 and the PHP5 cURL module (php5-curl on Debian systems).
+
 ## Thanks ##
 Many thanks goes to flinga who came up with the idea for this script, please see
 the THANKS file for more information.
