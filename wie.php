@@ -53,7 +53,7 @@ else
 // check if article is UTF-8 encoded, in which case regular ucwords won't work
 if (mb_check_encoding($article, 'UTF-8'))
 {
-    $article = utf8_ucwords($article);
+    $article = utf8_ucwords($article); // uppercase article in UTF-8
 }
 else
 {
