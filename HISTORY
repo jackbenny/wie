@@ -1,3 +1,7 @@
+0.3.1 - 2014-08-04
+    Minor changes, changed some variables to constant and
+    added a constant for the version number.
+
 0.3 - 2014-08-04
     Added a check to see whatever the article string is in
     UTF-8 or not. If it is in UTF-8, use a specific function

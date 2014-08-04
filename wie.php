@@ -17,9 +17,10 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */    
+define("VERSION", "0.3.1");
+define("PROGNAME", $argv[0]);
 
 $defaultLang = "en"; // default language
-$progName = $argv[0];
 
 
 
@@ -85,8 +86,8 @@ print (wordwrap($string, 65, "\n") . "\n");
 // misc functions
 function usage()
 {
-    print "Wikipedia ingress extractor (wie), version 0.2\n";
-    print "Usage: $GLOBALS[progName] [--lang=sv] article\n";
+    print "Wikipedia ingress extractor (wie), version " . VERSION . "\n";
+    print "Usage: " . PROGNAME . " [--lang=sv] article\n";
     print "Default language if none specified is $GLOBALS[defaultLang].\n";
     print "Remember to quote the article if there's more than one word,\n";
     print "for example Roger Bacon as 'Roger Bacon'.\n";
