@@ -20,14 +20,9 @@
 
 $defaultLang = "en"; // default language
 $progName = $argv[0];
-function usage()
-{
-    print "Wikipedia ingress extractor (wie), version 0.2\n";
-    print "Usage: $GLOBALS[progName] [--lang=sv] article\n";
-    print "Default language if none specified is $GLOBALS[defaultLang].\n";
-    print "Remember to quote the article if there's more than one word,\n";
-    print "for example Roger Bacon as 'Roger Bacon'.\n";
-}
+
+
+
 // check if no argument was specified
 if (!isset($argv[1]))
 {
@@ -55,7 +50,16 @@ else
     $article = $argv[1];
 }
 
-$article = ucwords($article); // uppercase article
+// check if article is UTF-8 encoded, in which case regular ucwords won't work
+if (mb_check_encoding($article, 'UTF-8'))
+{
+    $article = utf8_ucwords($article);
+}
+else
+{
+    $article = ucwords($article); // uppercase article
+}
+
 $article = preg_replace("/\s/", "_" ,$article); // make spaces to underscore
 $url = "http://$lang.wikipedia.org/wiki/$article"; 
 
@@ -77,5 +81,21 @@ if (!isset($match[1]))
 
 $string = strip_tags($match[1]); 
 print (wordwrap($string, 65, "\n") . "\n"); 
+
+// misc functions
+function usage()
+{
+    print "Wikipedia ingress extractor (wie), version 0.2\n";
+    print "Usage: $GLOBALS[progName] [--lang=sv] article\n";
+    print "Default language if none specified is $GLOBALS[defaultLang].\n";
+    print "Remember to quote the article if there's more than one word,\n";
+    print "for example Roger Bacon as 'Roger Bacon'.\n";
+}
+
+function utf8_ucwords($str)
+{
+    $str = mb_convert_case($str, MB_CASE_TITLE, "UTF-8");
+    return $str;    
+}
 
 ?>

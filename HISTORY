@@ -1,6 +1,11 @@
-0.1 - 2014-07-28
-    First release of wie
+0.3 - 2014-08-04
+    Added a check to see whatever the article string is in
+    UTF-8 or not. If it is in UTF-8, use a specific function
+    to handle it. Regular 'ucwords' can't handle UTF-8.
 
 0.2 - 2014-07-31
     Changed 'shell_exec(curl -s $URL)' to PHP5 cURL function
     Added HISTORY file
+
+0.1 - 2014-07-28
+    First release of wie
