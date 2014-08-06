@@ -1,3 +1,11 @@
+0.4 - 2014-08-06
+    Replaced ucwords with ucfirst (and made a matching UTF-8
+    ucfirst function). When using ucwords it was not
+    possible to reach articles with names such as 'Computer
+    programming language' since it would uppercase all words.
+    Since the first letter is always upperace, ucfirst is 
+    still safe.
+
 0.3.1 - 2014-08-04
     Minor changes, changed some variables to constant and
     added a constant for the version number.

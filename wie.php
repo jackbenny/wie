@@ -17,7 +17,7 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */    
-define("VERSION", "0.3.1");
+define("VERSION", "0.4");
 define("PROGNAME", $argv[0]);
 
 $defaultLang = "en"; // default language
@@ -51,14 +51,14 @@ else
     $article = $argv[1];
 }
 
-// check if article is UTF-8 encoded, in which case regular ucwords won't work
+// check if article is UTF-8 encoded, in which case regular ucfirst won't work
 if (mb_check_encoding($article, 'UTF-8'))
 {
-    $article = utf8_ucwords($article); // uppercase article in UTF-8
+    $article = utf8_ucfirst($article); // uppercase article in UTF-8
 }
 else
-{
-    $article = ucwords($article); // uppercase article
+{ 
+    $article = ucfirst($article); // uppercase article
 }
 
 $article = preg_replace("/\s/", "_" ,$article); // make spaces to underscore
@@ -93,10 +93,12 @@ function usage()
     print "for example Roger Bacon as 'Roger Bacon'.\n";
 }
 
-function utf8_ucwords($str)
+function utf8_ucfirst($str)
 {
-    $str = mb_convert_case($str, MB_CASE_TITLE, "UTF-8");
-    return $str;    
+    $firstChar = mb_substr($str, 0, 1, 'UTF-8');
+    $uc_str = mb_strtoupper($firstChar, 'UTF-8') . mb_substr($str, 1, NULL, 'UTF-8');
+
+    return $uc_str;
 }
 
 ?>
